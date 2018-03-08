@@ -86,7 +86,7 @@ if ( ! class_exists( 'Tribe__Events__Template__Day' ) ) {
 		 * @return string
 		 */
 		public function ical_link( $link ) {
-			global $wp_query;
+			$wp_query = tribe_get_global_query_object();
 
 			$day = $wp_query->get( 'start_date' );
 
@@ -98,7 +98,7 @@ if ( ! class_exists( 'Tribe__Events__Template__Day' ) ) {
 		 */
 		public function setup_view() {
 
-			global $wp_query;
+			$wp_query = tribe_get_global_query_object();
 
 			$time_format = apply_filters( 'tribe_events_day_timeslot_format', get_option( 'time_format', Tribe__Date_Utils::TIMEFORMAT ) );
 
@@ -184,7 +184,7 @@ if ( ! class_exists( 'Tribe__Events__Template__Day' ) ) {
 
 				global $post;
 
-				global $wp_query;
+				$wp_query = tribe_get_global_query_object();
 				$wp_query = $query;
 
 				add_filter( 'tribe_is_day', '__return_true' ); // simplest way to declare that this is a day view

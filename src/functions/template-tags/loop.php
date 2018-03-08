@@ -59,7 +59,7 @@ if ( class_exists( 'Tribe__Events__Main' ) ) {
 	 */
 	function tribe_is_past() {
 
-		global $wp_query;
+		$wp_query = tribe_get_global_query_object();
 
 		$is_past = ! empty( $wp_query->tribe_is_past ) && ! tribe_is_showing_all() ? $wp_query->tribe_is_past : false;
 
@@ -80,7 +80,7 @@ if ( class_exists( 'Tribe__Events__Main' ) ) {
 	 */
 	function tribe_is_upcoming() {
 
-		global $wp_query;
+		$wp_query = tribe_get_global_query_object();
 
 		$is_upcoming = ( tribe_is_list_view() && ! tribe_is_past() ) ? true : false;
 
@@ -163,7 +163,7 @@ if ( class_exists( 'Tribe__Events__Main' ) ) {
 	 */
 	function tribe_get_events_title( $depth = true ) {
 
-		global $wp_query;
+		$wp_query = tribe_get_global_query_object();
 
 		$events_label_plural = tribe_get_event_label_plural();
 
@@ -251,7 +251,7 @@ if ( class_exists( 'Tribe__Events__Main' ) ) {
 	 */
 	function tribe_has_previous_event() {
 
-		global $wp_query;
+		$wp_query = tribe_get_global_query_object();
 
 		$has_previous = false;
 		$past         = tribe_is_past();
@@ -295,7 +295,7 @@ if ( class_exists( 'Tribe__Events__Main' ) ) {
 	 */
 	function tribe_has_next_event() {
 
-		global $wp_query;
+		$wp_query = tribe_get_global_query_object();
 
 		$has_next  = false;
 		$past      = tribe_is_past();
