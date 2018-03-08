@@ -66,7 +66,7 @@ class Tribe__Events__List_Widget extends WP_Widget {
 		global $tribe_ecp;
 		global $post;
 
-		$wp_query = tribe_get_global_query_object();
+		global $wp_query;
 
 		$instance = wp_parse_args(
 			$instance, array(

@@ -64,7 +64,7 @@ class Tribe__Events__iCal {
 	public function day_view_ical_link( $link ) {
 		if ( tribe_is_day() ) {
 
-			$wp_query = tribe_get_global_query_object();
+			global $wp_query;
 			$day      = $wp_query->get( 'start_date' );
 			$link     = trailingslashit( esc_url( trailingslashit( tribe_get_day_link( $day ) ) . '?ical=1' ) );
 		}
@@ -100,7 +100,7 @@ class Tribe__Events__iCal {
 	 */
 	public function maybe_add_link() {
 
-		$wp_query = tribe_get_global_query_object();
+		global $wp_query;
 
 		/**
 		 * A filter to control whether the "iCal Import" link shows up or not.

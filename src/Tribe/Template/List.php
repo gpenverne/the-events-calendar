@@ -128,7 +128,7 @@ if ( ! class_exists( 'Tribe__Events__Template__List' ) ) {
 			global $post;
 			global $paged;
 
-			$wp_query = tribe_get_global_query_object();
+			global $wp_query;
 			$wp_query = $query;
 
 			if ( ! empty( $query->posts ) ) {

@@ -9,7 +9,7 @@
  * @version 4.6.12
  *
  */
-$wp_query = tribe_get_global_query_object();
+global $wp_query;
 
 $events_label_plural = tribe_get_event_label_plural();
 
