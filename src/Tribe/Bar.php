@@ -38,9 +38,7 @@ class Tribe__Events__Bar {
 	 */
 	public function should_show() {
 
-		if ( ! $wp_query = tribe_get_global_query_object() ) {
-			return;
-		}
+		$wp_query = tribe_get_global_query_object();
 
 		$show_bar_filter = in_array(
 			get_post_type(), array(

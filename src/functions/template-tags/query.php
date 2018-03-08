@@ -14,9 +14,7 @@ if ( class_exists( 'Tribe__Events__Main' ) ) {
 	 **/
 	function tribe_is_event_category() {
 
-		if ( ! $wp_query = tribe_get_global_query_object() ) {
-			return;
-		}
+		$wp_query = tribe_get_global_query_object();
 
 		$tribe_is_event_category = ! empty( $wp_query->tribe_is_event_category );
 
@@ -30,9 +28,7 @@ if ( class_exists( 'Tribe__Events__Main' ) ) {
 	 **/
 	function tribe_is_event_venue() {
 
-		if ( ! $wp_query = tribe_get_global_query_object() ) {
-			return;
-		}
+		$wp_query = tribe_get_global_query_object();
 
 		$tribe_is_event_venue = ! empty( $wp_query->tribe_is_event_venue );
 
@@ -46,9 +42,7 @@ if ( class_exists( 'Tribe__Events__Main' ) ) {
 	 **/
 	function tribe_is_event_organizer() {
 
-		if ( ! $wp_query = tribe_get_global_query_object() ) {
-			return;
-		}
+		$wp_query = tribe_get_global_query_object();
 
 		$tribe_is_event_organizer = ! empty( $wp_query->tribe_is_event_organizer );
 
@@ -62,9 +56,7 @@ if ( class_exists( 'Tribe__Events__Main' ) ) {
 	 **/
 	function tribe_is_event_query() {
 
-		if ( ! $wp_query = tribe_get_global_query_object() ) {
-			return;
-		}
+		$wp_query = tribe_get_global_query_object();
 
 		$tribe_is_event_query = ! empty( $wp_query->tribe_is_event_query );
 
@@ -97,10 +89,10 @@ if ( ! function_exists( 'tribe_is_community_edit_event_page' ) ) {
 	 * @since 1.0.1
 	 */
 	function tribe_is_community_edit_event_page() {
+
 		if ( ! class_exists( 'Tribe__Events__Community__Main' ) ) {
 			return false;
 		}
-
 
 		return Tribe__Events__Community__Main::instance()->isEditPage;
 	}

@@ -64,12 +64,9 @@ class Tribe__Events__iCal {
 	public function day_view_ical_link( $link ) {
 		if ( tribe_is_day() ) {
 
-			if ( ! $wp_query = tribe_get_global_query_object() ) {
-				return;
-			}
-
-			$day  = $wp_query->get( 'start_date' );
-			$link = trailingslashit( esc_url( trailingslashit( tribe_get_day_link( $day ) ) . '?ical=1' ) );
+			$wp_query = tribe_get_global_query_object();
+			$day      = $wp_query->get( 'start_date' );
+			$link     = trailingslashit( esc_url( trailingslashit( tribe_get_day_link( $day ) ) . '?ical=1' ) );
 		}
 
 		return $link;
@@ -103,9 +100,7 @@ class Tribe__Events__iCal {
 	 */
 	public function maybe_add_link() {
 
-		if ( ! $wp_query = tribe_get_global_query_object() ) {
-			return;
-		}
+		$wp_query = tribe_get_global_query_object();
 
 		/**
 		 * A filter to control whether the "iCal Import" link shows up or not.
@@ -263,11 +258,7 @@ class Tribe__Events__iCal {
 				'eventDisplay' => tribe_get_request_var( 'tribe_event_display', 'list' ),
 			) );
 		} else {
-
-			if ( ! $wp_query = tribe_get_global_query_object() ) {
-				return;
-			}
-
+			$wp_query     = tribe_get_global_query_object();
 			$events_posts = $this->get_events_list( $wp_query->query, $wp_query );
 		}
 

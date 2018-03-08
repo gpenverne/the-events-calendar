@@ -49,10 +49,7 @@ if ( ! class_exists( 'Tribe__Events__Template__Day' ) ) {
 		 **/
 		public function header_attributes( $attrs ) {
 
-			if ( ! $wp_query = tribe_get_global_query_object() ) {
-				return;
-			}
-
+			$wp_query    = tribe_get_global_query_object();
 			$current_day = $wp_query->get( 'start_date' );
 
 			$attrs['data-view']    = 'day';
@@ -72,6 +69,7 @@ if ( ! class_exists( 'Tribe__Events__Template__Day' ) ) {
 		 */
 		protected function get_title( $original_title, $sep = null ) {
 			$new_title = parent::get_title( $original_title, $sep );
+
 			if ( has_filter( 'tribe_events_day_view_title' ) ) {
 				_deprecated_function( "The 'tribe_events_day_view_title' filter", '3.8', " the 'tribe_get_events_title' filter" );
 				$title_date = date_i18n( tribe_get_date_format( true ), strtotime( get_query_var( 'eventDate' ) ) );
@@ -88,9 +86,7 @@ if ( ! class_exists( 'Tribe__Events__Template__Day' ) ) {
 		 * @return string
 		 */
 		public function ical_link( $link ) {
-			if ( ! $wp_query = tribe_get_global_query_object() ) {
-				return;
-			}
+			$wp_query = tribe_get_global_query_object();
 
 			$day = $wp_query->get( 'start_date' );
 
@@ -99,13 +95,10 @@ if ( ! class_exists( 'Tribe__Events__Template__Day' ) ) {
 
 		/**
 		 * Organize and reorder the events posts according to time slot
-		 *
-		 **/
+		 */
 		public function setup_view() {
 
-			if ( ! $wp_query = tribe_get_global_query_object() ) {
-				return;
-			}
+			$wp_query = tribe_get_global_query_object();
 
 			$time_format = apply_filters( 'tribe_events_day_timeslot_format', get_option( 'time_format', Tribe__Date_Utils::TIMEFORMAT ) );
 
@@ -147,6 +140,7 @@ if ( ! class_exists( 'Tribe__Events__Template__Day' ) ) {
 
 		protected function nothing_found_notice() {
 			$events_label_plural_lowercase = tribe_get_event_label_plural_lowercase();
+
 			list( $search_term, $tax_term, $geographic_term ) = $this->get_search_terms();
 
 			if ( empty( $search_term ) && empty( $geographic_term ) && ! empty( $tax_term ) ) {
@@ -190,10 +184,7 @@ if ( ! class_exists( 'Tribe__Events__Template__Day' ) ) {
 
 				global $post;
 
-				if ( ! $wp_query = tribe_get_global_query_object() ) {
-					return;
-				}
-
+				$wp_query = tribe_get_global_query_object();
 				$wp_query = $query;
 
 				add_filter( 'tribe_is_day', '__return_true' ); // simplest way to declare that this is a day view

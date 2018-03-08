@@ -59,9 +59,7 @@ if ( class_exists( 'Tribe__Events__Main' ) ) {
 	 */
 	function tribe_is_past() {
 
-		if ( ! $wp_query = tribe_get_global_query_object() ) {
-			return;
-		}
+		$wp_query = tribe_get_global_query_object();
 
 		$is_past = ! empty( $wp_query->tribe_is_past ) && ! tribe_is_showing_all() ? $wp_query->tribe_is_past : false;
 
@@ -82,9 +80,7 @@ if ( class_exists( 'Tribe__Events__Main' ) ) {
 	 */
 	function tribe_is_upcoming() {
 
-		if ( ! $wp_query = tribe_get_global_query_object() ) {
-			return;
-		}
+		$wp_query = tribe_get_global_query_object();
 
 		$is_upcoming = ( tribe_is_list_view() && ! tribe_is_past() ) ? true : false;
 
@@ -167,9 +163,7 @@ if ( class_exists( 'Tribe__Events__Main' ) ) {
 	 */
 	function tribe_get_events_title( $depth = true ) {
 
-		if ( ! $wp_query = tribe_get_global_query_object() ) {
-			return;
-		}
+		$wp_query = tribe_get_global_query_object();
 
 		$events_label_plural = tribe_get_event_label_plural();
 
@@ -257,9 +251,7 @@ if ( class_exists( 'Tribe__Events__Main' ) ) {
 	 */
 	function tribe_has_previous_event() {
 
-		if ( ! $wp_query = tribe_get_global_query_object() ) {
-			return;
-		}
+		$wp_query = tribe_get_global_query_object();
 
 		$has_previous = false;
 		$past         = tribe_is_past();
@@ -303,9 +295,7 @@ if ( class_exists( 'Tribe__Events__Main' ) ) {
 	 */
 	function tribe_has_next_event() {
 
-		if ( ! $wp_query = tribe_get_global_query_object() ) {
-			return;
-		}
+		$wp_query = tribe_get_global_query_object();
 
 		$has_next  = false;
 		$past      = tribe_is_past();
@@ -328,8 +318,8 @@ if ( class_exists( 'Tribe__Events__Main' ) ) {
 			$args = (array) $wp_query->query;
 
 			// Make some efficiency savings
-			$args['no_paging'] = true;
-			$args['no_found_rows'] = true;
+			$args['no_paging']      = true;
+			$args['no_found_rows']  = true;
 			$args['posts_per_page'] = 1;
 
 			$next_event = tribe_get_events( $args );
@@ -379,7 +369,6 @@ if ( class_exists( 'Tribe__Events__Main' ) ) {
 	function tribe_events_list_the_date_headers() {
 
 		/* Month and year separators (on every month and year change) */
-
 		$show_headers = apply_filters( 'tribe_events_list_show_date_headers', true );
 
 		$html = '';
@@ -393,11 +382,10 @@ if ( class_exists( 'Tribe__Events__Main' ) ) {
 			$month_year_format = tribe_get_date_option( 'monthAndYearFormat', 'F Y' );
 
 			if ( $wp_query->current_post > 0 ) {
-				$prev_post = $wp_query->posts[ $wp_query->current_post - 1 ];
-				$prev_event_year = tribe_get_start_date( $prev_post, false, 'Y' );
+				$prev_post        = $wp_query->posts[ $wp_query->current_post - 1 ];
+				$prev_event_year  = tribe_get_start_date( $prev_post, false, 'Y' );
 				$prev_event_month = tribe_get_start_date( $prev_post, false, 'm' );
 			}
-
 
 			/*
 			 * If the event month changed since the last event in the loop,

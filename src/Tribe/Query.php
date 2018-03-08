@@ -901,6 +901,7 @@ if ( ! class_exists( 'Tribe__Events__Query' ) ) {
 			// custom sql to get ids of posts that hide_upcoming_ids
 			$hide_upcoming_ids = $wpdb->get_col( "SELECT {$wpdb->postmeta}.post_id FROM {$wpdb->postmeta} WHERE {$wpdb->postmeta}.meta_key = '_EventHideFromUpcoming' AND {$wpdb->postmeta}.meta_value = 'yes'" );
 			$hide_upcoming_ids = apply_filters( 'tribe_events_hide_from_upcoming_ids', $hide_upcoming_ids );
+
 			$cache->set( $cache_key, $hide_upcoming_ids, HOUR_IN_SECONDS, 'save_post' );
 
 			return $hide_upcoming_ids;
